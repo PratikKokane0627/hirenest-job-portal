@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import { uploadResumeToCloudinary } from "../utils/cloudinary.js";
 import { signToken } from "../utils/token.js";
 
 export async function registerUser(req, res, next) {
@@ -109,7 +110,7 @@ export async function updateProfile(req, res, next) {
     }
 
     if (req.file) {
-      updates["studentProfile.resumeUrl"] = `/uploads/${req.file.filename}`;
+      updates["studentProfile.resumeUrl"] = await uploadResumeToCloudinary(req.file);
     }
 
     const user = await User.findByIdAndUpdate(req.user._id, updates, {

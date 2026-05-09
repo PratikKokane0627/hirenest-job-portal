@@ -2,6 +2,7 @@ import express from "express";
 import adminRoutes from "./admin.routes.js";
 import applicationRoutes from "./application.routes.js";
 import authRoutes from "./auth.routes.js";
+import fileRoutes from "./file.routes.js";
 import jobRoutes from "./job.routes.js";
 import messageRoutes from "./message.routes.js";
 import notificationRoutes from "./notification.routes.js";
@@ -13,6 +14,7 @@ router.get("/health", (_req, res) => {
 });
 
 router.use("/auth", authRoutes);
+router.use("/files", fileRoutes);
 router.use("/jobs", jobRoutes);
 router.use("/applications", applicationRoutes);
 router.use("/admin", adminRoutes);
