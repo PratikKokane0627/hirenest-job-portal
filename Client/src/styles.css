@@ -2762,26 +2762,27 @@ mark {
 
   .landing-visual {
     border-radius: 12px;
+    background: #ffffff;
   }
 
   .landing-visual img {
-    aspect-ratio: 16 / 12;
-    object-fit: cover;
+    aspect-ratio: 780 / 670;
+    object-fit: contain;
     object-position: center;
   }
 
   .landing-feature-strip {
-    margin-inline: 14px;
+    margin: 2px 14px 0;
     border-radius: 14px;
     box-shadow: 0 14px 28px rgba(76, 29, 149, 0.08);
   }
 
   .landing-feature {
     display: grid;
-    grid-template-columns: 42px minmax(0, 1fr);
+    grid-template-columns: 40px minmax(0, 1fr);
     align-items: center;
     gap: 10px 12px;
-    padding: 16px 14px;
+    padding: 14px;
     border-right: 0;
     border-bottom: 1px solid rgba(234, 220, 243, 0.82);
   }
@@ -2791,8 +2792,8 @@ mark {
   }
 
   .landing-feature svg {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     padding: 10px;
     border-radius: 12px;
   }
