@@ -2835,3 +2835,233 @@ mark {
     font-size: 14px;
   }
 }
+
+.mobile-app-header,
+.mobile-menu-backdrop,
+.mobile-drawer-top,
+.mobile-user-card {
+  display: none;
+}
+
+.sidebar-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (max-width: 850px) {
+  .app-shell {
+    display: block;
+    min-height: 100vh;
+  }
+
+  .mobile-app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 48%, #db2777 100%);
+    box-shadow: 0 10px 24px rgba(76, 29, 149, 0.16);
+  }
+
+  .mobile-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .mobile-brand svg {
+    flex: 0 0 auto;
+    color: #fff4fb;
+  }
+
+  .mobile-brand strong,
+  .mobile-brand span {
+    display: block;
+    line-height: 1.1;
+  }
+
+  .mobile-brand strong {
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  .mobile-brand span {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 12px;
+  }
+
+  .mobile-menu-toggle,
+  .mobile-menu-close {
+    width: 44px;
+    height: 44px;
+    display: inline-grid;
+    place-items: center;
+    border: 0;
+    border-radius: 8px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .mobile-menu-close {
+    margin-left: auto;
+    background: transparent;
+  }
+
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1060;
+    display: block;
+    border: 0;
+    background: rgba(9, 6, 20, 0);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease, background-color 180ms ease;
+  }
+
+  .app-shell.menu-open .mobile-menu-backdrop {
+    background: rgba(9, 6, 20, 0.62);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    z-index: 1070;
+    width: min(82vw, 340px);
+    height: 100dvh;
+    overflow-y: auto;
+    padding: 18px !important;
+    gap: 18px;
+    border: 0;
+    transform: translateX(100%);
+    transition: transform 220ms ease;
+    box-shadow: -24px 0 42px rgba(9, 6, 20, 0.28);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-drawer-top {
+    display: flex;
+    justify-content: flex-end;
+    min-height: 42px;
+  }
+
+  .sidebar > .brand {
+    align-items: flex-start;
+    margin-bottom: 8px !important;
+  }
+
+  .sidebar > .brand strong {
+    font-size: 22px;
+  }
+
+  .sidebar > .brand span {
+    font-size: 12px;
+  }
+
+  .mobile-user-card {
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    padding: 10px 0 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+  }
+
+  .mobile-user-avatar {
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 6px;
+    border-radius: 50%;
+    color: #7c3aed;
+    background: rgba(255, 255, 255, 0.68);
+  }
+
+  .mobile-user-card strong {
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.15;
+  }
+
+  .mobile-user-card span {
+    max-width: 100%;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .sidebar nav {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar .nav-link {
+    justify-content: flex-start;
+    min-height: 52px;
+    padding: 12px 14px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+    border-radius: 8px;
+  }
+
+  .sidebar .nav-link.active,
+  .sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: none;
+  }
+
+  .sidebar-logout {
+    min-height: 48px;
+    margin-top: auto !important;
+    border-radius: 8px;
+    font-weight: 800;
+  }
+
+  .content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .mobile-app-header {
+    min-height: 72px;
+    padding: 14px 16px;
+  }
+
+  .mobile-brand strong {
+    font-size: 20px;
+  }
+
+  .mobile-brand span {
+    font-size: 11px;
+  }
+
+  .mobile-menu-toggle,
+  .mobile-menu-close {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sidebar {
+    width: min(84vw, 320px);
+  }
+}
