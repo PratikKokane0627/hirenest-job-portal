@@ -189,6 +189,16 @@ body {
 .landing-visual img {
   width: 100%;
   display: block;
+  aspect-ratio: 780 / 670;
+  object-fit: cover;
+}
+
+.route-loader {
+  min-height: 42vh;
+  display: grid;
+  place-items: center;
+  color: var(--portal-primary);
+  font-weight: 800;
 }
 
 .landing-feature-strip {
@@ -2197,6 +2207,68 @@ mark {
 }
 
 @media (max-width: 850px) {
+  .landing-nav {
+    min-height: auto;
+    padding: 12px 0;
+  }
+
+  .landing-nav .container-fluid {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .landing-brand {
+    font-size: 28px;
+  }
+
+  .landing-brand-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .landing-login-btn {
+    min-width: 104px;
+    min-height: 46px;
+    padding-inline: 18px !important;
+    font-size: 16px;
+  }
+
+  .landing-nav-link {
+    padding-inline: 8px !important;
+    font-size: 15px;
+  }
+
+  .landing-hero {
+    padding-top: 30px;
+  }
+
+  .landing-copy {
+    gap: 16px;
+  }
+
+  .landing-copy h1 {
+    max-width: 11ch;
+    font-size: 48px;
+    line-height: 1.15;
+  }
+
+  .landing-copy p {
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .landing-main-cta,
+  .landing-secondary-cta {
+    min-width: 180px;
+    min-height: 56px;
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+
+  .landing-visual {
+    border-radius: 12px;
+  }
+
   .app-shell {
     grid-template-columns: 1fr;
   }
@@ -2347,6 +2419,106 @@ mark {
 }
 
 @media (max-width: 520px) {
+  .landing-page {
+    background: linear-gradient(180deg, #ffffff 0%, #fff8fd 46%, #f8f4ff 100%);
+  }
+
+  .landing-nav {
+    box-shadow: 0 6px 18px rgba(76, 29, 149, 0.05);
+  }
+
+  .landing-nav .container-fluid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .landing-brand {
+    gap: 10px !important;
+    font-size: clamp(24px, 7vw, 30px);
+  }
+
+  .landing-brand-icon {
+    width: 42px;
+    height: 42px;
+    box-shadow: 0 8px 18px rgba(124, 58, 237, 0.16);
+  }
+
+  .landing-brand-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .landing-nav .d-flex {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .landing-login-btn {
+    min-width: 118px;
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  .landing-hero {
+    padding-top: 24px;
+    padding-bottom: 28px;
+  }
+
+  .landing-kicker {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .landing-copy h1 {
+    max-width: 12ch;
+    font-size: clamp(38px, 11vw, 46px);
+    line-height: 1.14;
+  }
+
+  .landing-copy p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .landing-copy .d-flex {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 10px !important;
+  }
+
+  .landing-main-cta,
+  .landing-secondary-cta {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 11px 16px;
+    font-size: 17px;
+  }
+
+  .landing-visual {
+    margin-top: 4px;
+  }
+
+  .landing-feature-strip {
+    border-radius: 12px;
+  }
+
+  .landing-feature {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .landing-feature svg {
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+    border-radius: 12px;
+  }
+
   .sidebar {
     padding: 14px;
   }
@@ -2441,8 +2613,11 @@ mark {
   .job-card button,
   .compact-form button,
   .notice button {
-    width: 100%;
-    flex-basis: 100%;
+    width: auto;
+    flex: 1 1 120px;
+    min-height: 38px;
+    padding: 8px 10px;
+    font-size: 14px;
   }
 
   .form-action .btn {

@@ -1,7 +1,8 @@
 import { ArrowRight, BriefcaseBusiness, MessageCircle, ShieldCheck, Sparkles, UserPlus, UserRoundCheck, Zap } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
-import landingHero from "../assets/landing-hero.png";
+import landingHeroSmall from "../assets/landing-hero-520.jpg";
+import landingHeroLarge from "../assets/landing-hero-780.jpg";
 import { useAuth } from "../state/AuthContext.jsx";
 
 const features = [
@@ -54,7 +55,16 @@ export default function Landing() {
 
           <div className="col-12 col-xl-7">
             <div className="landing-visual">
-              <img src={landingHero} alt="Students and recruiter using HireNest" />
+              <picture>
+                <source media="(max-width: 640px)" srcSet={landingHeroSmall} />
+                <img
+                  src={landingHeroLarge}
+                  alt="Students and recruiter using HireNest"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 640px) 92vw, (max-width: 1200px) 92vw, 58vw"
+                />
+              </picture>
             </div>
           </div>
         </div>

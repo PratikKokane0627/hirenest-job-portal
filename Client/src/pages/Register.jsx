@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BriefcaseBusiness, Building2, Eye, GraduationCap, Lock, Mail, User, UserPlus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import registrationIllustration from "../assets/registration-illustration.png";
+import registrationIllustration from "../assets/registration-illustration-900.jpg";
 import { useAuth } from "../state/AuthContext.jsx";
 import { toastError, toastSuccess, toastWarning } from "../utils/toast.js";
 
@@ -132,7 +132,12 @@ export default function Register() {
       </form>
 
       <aside className="register-visual-panel image-panel">
-        <img src={registrationIllustration} alt="Students and recruiters connecting through the job portal" />
+        <img
+          src={registrationIllustration}
+          alt="Students and recruiters connecting through the job portal"
+          loading="lazy"
+          decoding="async"
+        />
       </aside>
     </section>
   );

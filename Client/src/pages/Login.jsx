@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Eye, Lock, LogIn, Mail, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import loginIllustration from "../assets/login-illustration.png";
+import loginIllustration from "../assets/login-illustration-900.jpg";
 import { useAuth } from "../state/AuthContext.jsx";
 import { toastError, toastSuccess, toastWarning } from "../utils/toast.js";
 
@@ -112,7 +112,12 @@ export default function Login() {
       </form>
 
       <aside className="register-visual-panel image-panel login-image-panel">
-        <img src={loginIllustration} alt="Students discovering opportunities through the job portal" />
+        <img
+          src={loginIllustration}
+          alt="Students discovering opportunities through the job portal"
+          loading="lazy"
+          decoding="async"
+        />
       </aside>
     </section>
   );

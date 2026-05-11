@@ -11,24 +11,52 @@ const initialFilters = {
   salary: "",
   category: ""
 };
+const jobsCache = new Map();
 
 export default function Jobs() {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
   const [filters, setFilters] = useState(initialFilters);
+  const [debouncedFilters, setDebouncedFilters] = useState(initialFilters);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setDebouncedFilters(filters);
+    }, 350);
+
+    return () => window.clearTimeout(timer);
+  }, [filters]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
     async function loadJobs() {
-      setLoading(true);
-      const params = Object.fromEntries(Object.entries(filters).filter(([, value]) => value));
-      const { data } = await api.get("/jobs", { params });
+      const params = Object.fromEntries(Object.entries(debouncedFilters).filter(([, value]) => value));
+      const cacheKey = JSON.stringify(params);
+      const cachedJobs = jobsCache.get(cacheKey);
+
+      if (cachedJobs) {
+        setJobs(cachedJobs);
+        setLoading(false);
+      } else {
+        setLoading(true);
+      }
+
+      const { data } = await api.get("/jobs", { params, signal: controller.signal });
+      jobsCache.set(cacheKey, data);
       setJobs(data);
       setLoading(false);
     }
 
-    loadJobs().catch(() => setLoading(false));
-  }, [filters]);
+    loadJobs().catch((error) => {
+      if (error.name !== "CanceledError" && error.code !== "ERR_CANCELED") {
+        setLoading(false);
+      }
+    });
+
+    return () => controller.abort();
+  }, [debouncedFilters]);
 
   async function apply(jobId) {
     try {

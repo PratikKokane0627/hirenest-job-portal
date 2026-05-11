@@ -1,12 +1,13 @@
 import { BriefcaseBusiness, LayoutDashboard, LogIn, UserCircle, UserPlus } from "lucide-react";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Navigate, NavLink, Route, Routes, useNavigate } from "react-router-dom";
-import Dashboard from "../pages/Dashboard.jsx";
-import Jobs from "../pages/Jobs.jsx";
-import Login from "../pages/Login.jsx";
-import Profile from "../pages/Profile.jsx";
-import Register from "../pages/Register.jsx";
 import { useAuth } from "../state/AuthContext.jsx";
+
+const Dashboard = lazy(() => import("../pages/Dashboard.jsx"));
+const Jobs = lazy(() => import("../pages/Jobs.jsx"));
+const Login = lazy(() => import("../pages/Login.jsx"));
+const Profile = lazy(() => import("../pages/Profile.jsx"));
+const Register = lazy(() => import("../pages/Register.jsx"));
 
 export default function AppShell() {
   const { user, logout } = useAuth();
@@ -60,16 +61,18 @@ export default function AppShell() {
       </aside>
 
       <main className="content p-3 p-md-4">
-        <Routes>
-          <Route path=".well-known/change-password" element={<Navigate to="/dashboard" replace />} />
-          <Route path="change-password" element={<Navigate to="/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="jobs" element={<Jobs />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
+        <Suspense fallback={<div className="route-loader">Loading...</div>}>
+          <Routes>
+            <Route path=".well-known/change-password" element={<Navigate to="/dashboard" replace />} />
+            <Route path="change-password" element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="jobs" element={<Jobs />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </Suspense>
       </main>
     </div>
   );
