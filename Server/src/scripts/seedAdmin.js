@@ -5,7 +5,7 @@ import User from "../models/User.js";
 dotenv.config();
 
 const email = process.env.ADMIN_EMAIL || "admin@portal.com";
-const password = process.env.ADMIN_PASSWORD || "admin123";
+const password = process.env.ADMIN_PASSWORD || "HireNest@2026#Admin";
 
 await connectDB();
 
