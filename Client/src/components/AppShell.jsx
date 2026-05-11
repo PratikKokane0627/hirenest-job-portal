@@ -61,6 +61,8 @@ export default function AppShell() {
 
       <main className="content p-3 p-md-4">
         <Routes>
+          <Route path=".well-known/change-password" element={<Navigate to="/dashboard" replace />} />
+          <Route path="change-password" element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="jobs" element={<Jobs />} />
           <Route path="profile" element={<Profile />} />
