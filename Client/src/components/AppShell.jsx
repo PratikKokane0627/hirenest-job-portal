@@ -56,13 +56,17 @@ export default function AppShell() {
           </div>
         </NavLink>
 
-        {user && (
-          <div className="mobile-user-card">
-            <div className="mobile-user-avatar">
-              <UserCircle size={34} />
+        {user?.role === "student" && (
+          <div className="student-sidebar-card">
+            <div className="student-sidebar-avatar" aria-hidden="true">
+              {user.profileImage ? (
+                <img src={user.profileImage} alt="" />
+              ) : (
+                <UserCircle size={36} />
+              )}
             </div>
             <strong>{user.name}</strong>
-            <span>{user.email}</span>
+            <span>Student</span>
           </div>
         )}
 
