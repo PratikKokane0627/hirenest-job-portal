@@ -1,5 +1,6 @@
-import { BriefcaseBusiness, LayoutDashboard, LogIn, LogOut, Menu, UserCircle, UserPlus, X } from "lucide-react";
-import React, { lazy, Suspense, useState } from "react";
+import { BriefcaseBusiness, LayoutDashboard, LogIn, LogOut, UserCircle, UserPlus } from "lucide-react";
+import { lazy, Suspense, useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
 import { Navigate, NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import { useAuth } from "../state/AuthContext.jsx";
 
@@ -34,8 +35,14 @@ export default function AppShell() {
             <span>MERN recruitment system</span>
           </div>
         </NavLink>
-        <button className="mobile-menu-toggle" type="button" onClick={() => setMenuOpen(true)} aria-label="Open menu">
-          <Menu size={30} />
+        <button
+          className="mobile-menu-toggle"
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
+          aria-expanded={menuOpen}
+        >
+          <FiMenu size={30} />
         </button>
       </header>
 
@@ -44,7 +51,7 @@ export default function AppShell() {
       <aside className={menuOpen ? "sidebar text-white p-3 p-lg-4 open" : "sidebar text-white p-3 p-lg-4"}>
         <div className="mobile-drawer-top">
           <button className="mobile-menu-close" type="button" onClick={closeMenu} aria-label="Close menu">
-            <X size={30} />
+            <FiX size={30} />
           </button>
         </div>
 
@@ -74,7 +81,7 @@ export default function AppShell() {
             <BriefcaseBusiness size={18} /> Jobs
           </NavLink>
           {user?.role === "student" && (
-            <NavLink className="nav-link" to="/profile" onClick={closeMenu}>
+            <NavLink className="nav-link desktop-profile-link" to="/profile" onClick={closeMenu}>
               <UserCircle size={18} /> Profile
             </NavLink>
           )}

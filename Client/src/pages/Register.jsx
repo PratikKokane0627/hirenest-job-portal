@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BriefcaseBusiness, Building2, Eye, GraduationCap, Lock, Mail, User, UserPlus } from "lucide-react";
+import { useState } from "react";
+import { BriefcaseBusiness, Building2, Check, Eye, EyeOff, GraduationCap, Lock, Mail, User, UserPlus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import registrationIllustration from "../assets/registration-illustration-900.jpg";
 import { useAuth } from "../state/AuthContext.jsx";
@@ -26,6 +26,16 @@ export default function Register() {
     companyName: ""
   });
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const passwordScore = [
+    form.password.length >= 8,
+    /[A-Z]/.test(form.password),
+    /\d/.test(form.password),
+    /[^A-Za-z0-9]/.test(form.password)
+  ].filter(Boolean).length;
+  const passwordStrengthLabel = ["Too short", "Getting started", "Good", "Strong", "Excellent"][passwordScore];
 
   async function submit(event) {
     event.preventDefault();
@@ -76,11 +86,14 @@ export default function Register() {
   return (
     <section className="auth-design-page register-auth-page">
       <form className="auth-design-card register-design-card" onSubmit={submit}>
+        <div className="auth-orb auth-orb-one" />
+        <div className="auth-orb auth-orb-two" />
         <div className="auth-design-heading">
           <div className="auth-design-icon"><UserPlus size={30} /></div>
           <div>
+            <span>HireNest</span>
             <h1>Create your portal account</h1>
-            <p>Join thousands of students and recruiters building the future together.</p>
+            <p>Find your dream career faster</p>
           </div>
         </div>
 
@@ -99,24 +112,54 @@ export default function Register() {
         </div>
 
         <div className="auth-design-fields">
-          <AuthInput icon={User}>
-            <input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Full Name" />
-          </AuthInput>
-          <AuthInput icon={Mail}>
-            <input value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="Email Address" />
-          </AuthInput>
-          <AuthInput icon={Lock}>
-            <input value={form.password} onChange={(event) => setForm({ ...form, password: event.target.value })} type="password" placeholder="Password" />
-            <Eye size={17} className="auth-trailing-icon" />
-          </AuthInput>
-          <AuthInput icon={Lock}>
-            <input value={form.confirmPassword} onChange={(event) => setForm({ ...form, confirmPassword: event.target.value })} type="password" placeholder="Confirm Password" />
-            <Eye size={17} className="auth-trailing-icon" />
-          </AuthInput>
-          <AuthInput icon={Building2}>
-            <input value={form.companyName} onChange={(event) => setForm({ ...form, companyName: event.target.value })} placeholder="Company Name (for HR only)" disabled={form.role !== "hr"} />
-          </AuthInput>
+          <div className="field">
+            <span className="floating-field-label">Full name</span>
+            <AuthInput icon={User}>
+              <input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Enter your name" />
+            </AuthInput>
+          </div>
+          <div className="field">
+            <span className="floating-field-label">Email address</span>
+            <AuthInput icon={Mail}>
+              <input value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="Enter your email" />
+            </AuthInput>
+          </div>
+          <div className="field">
+            <span className="floating-field-label">Password</span>
+            <AuthInput icon={Lock}>
+              <input value={form.password} onChange={(event) => setForm({ ...form, password: event.target.value })} type={showPassword ? "text" : "password"} placeholder="Create a password" />
+              <button className="auth-eye-button" type="button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>
+                {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
+            </AuthInput>
+            <div className={`password-strength strength-${passwordScore}`}>
+              <span><i style={{ width: `${Math.max(passwordScore, 1) * 25}%` }} /></span>
+              <small>{passwordStrengthLabel}</small>
+            </div>
+          </div>
+          <div className="field">
+            <span className="floating-field-label">Confirm password</span>
+            <AuthInput icon={Lock}>
+              <input value={form.confirmPassword} onChange={(event) => setForm({ ...form, confirmPassword: event.target.value })} type={showConfirmPassword ? "text" : "password"} placeholder="Confirm Password" />
+              <button className="auth-eye-button" type="button" onClick={() => setShowConfirmPassword((value) => !value)} aria-label={showConfirmPassword ? "Hide password" : "Show password"}>
+                {showConfirmPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
+            </AuthInput>
+          </div>
+          {form.role === "hr" && (
+            <div className="field animated-company-field">
+              <span className="floating-field-label">Company name</span>
+              <AuthInput icon={Building2}>
+                <input value={form.companyName} onChange={(event) => setForm({ ...form, companyName: event.target.value })} placeholder="Company Name" />
+              </AuthInput>
+            </div>
+          )}
         </div>
+
+        <label className="auth-agreement">
+          <input type="checkbox" />
+          <span><Check size={15} /> I agree to the terms & conditions</span>
+        </label>
 
         {error && <p className="text-danger mb-0">{error}</p>}
 
