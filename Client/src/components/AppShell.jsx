@@ -13,6 +13,7 @@ export default function AppShell() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const roleLabel = user?.role === "hr" ? "HR / Recruiter" : user?.role === "admin" ? "Admin" : "Student";
 
   function handleLogout() {
     logout();
@@ -56,7 +57,7 @@ export default function AppShell() {
           </div>
         </NavLink>
 
-        {user?.role === "student" && (
+        {user && (
           <div className="student-sidebar-card">
             <div className="student-sidebar-avatar" aria-hidden="true">
               {user.profileImage ? (
@@ -66,7 +67,7 @@ export default function AppShell() {
               )}
             </div>
             <strong>{user.name}</strong>
-            <span>Student</span>
+            <span>{roleLabel}</span>
           </div>
         )}
 
