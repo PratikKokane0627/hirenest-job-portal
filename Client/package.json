@@ -15,7 +15,6 @@
     "lucide-react": "^1.14.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "react-icons": "^5.5.0",
     "react-router-dom": "^6.30.3",
     "socket.io-client": "^4.8.3",
     "toastr": "^2.1.4"
