@@ -228,16 +228,13 @@ CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 
 ---
 
-# 🚫 Not Included (Future Scope)
+# 🚀 Additional / Future Features
 
-These advanced enterprise features are intentionally **not included** in this version:
-
-- ❌ AI Resume Screening
-- ❌ Automated Proctoring
-- ❌ Video Interviews
-- ❌ Payment Gateway
-- ❌ External ATS Integrations
-- ❌ ML Candidate Ranking
+- 🔔 **Real-Time Notifications**: WebSockets for instant updates.
+- 💬 **Messaging System**: In-app messaging between employers and students.
+- 🤖 **Resume Parsing & Matching**: AI-based recommendations for job seekers.
+- 🔖 **Job Bookmarking**: Students can save jobs for later applications.
+- 📊 **Reports & Analytics**: Dashboard insights on job applications, user engagement, and hiring trends.
 
 ---
 
