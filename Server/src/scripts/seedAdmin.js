@@ -12,7 +12,12 @@ await connectDB();
 const existing = await User.findOne({ email });
 
 if (existing) {
-  console.log(`Admin already exists: ${email}`);
+  existing.name = existing.name || "Portal Admin";
+  existing.role = "admin";
+  existing.status = "approved";
+  existing.password = password;
+  await existing.save();
+  console.log(`Admin updated: ${email}`);
   process.exit(0);
 }
 

@@ -1,268 +1,139 @@
-# 🚀 HireNest Job Portal
+# HireNest Job Portal
 
-> A modern and responsive **MERN Stack Recruitment Platform** connecting **Students, HR Teams, and Admins** in one seamless hiring ecosystem.
+A responsive MERN stack recruitment portal for students, HR teams, and admins. It supports job browsing, applications, profile management, HR job posting, candidate review, interview scheduling, offer-letter handling, messaging, notifications, and admin moderation.
 
-✨ Built with scalability, clean UI, real-time communication, and role-based management in mind.
+## Tech Stack
 
----
+Frontend: React, Vite, Bootstrap, Lucide React, Axios, Socket.IO Client, Toastr  
+Backend: Node.js, Express.js, Socket.IO  
+Database: MongoDB with Mongoose  
+Authentication: JWT  
+File Uploads: Multer and Cloudinary  
+Deployment: Vercel frontend and Render backend
 
-# 🌐 Live Demo
+Advanced or future features such as AI resume screening, automated proctoring, payment processing, video interviews, external ATS integrations, and ML-based candidate ranking are intentionally not included in this version.
 
-- 💻 Frontend: `https://hirenestjobs.vercel.app`
-- ⚡ Backend API: `https://hirenest-job-portal-pbh8.onrender.com/api`
+## Project Structure
 
----
-
-# ✨ Features
-
-## 👨‍🎓 Student Features
-- 🔐 JWT Authentication
-- 👤 Profile Management
-- 📄 Resume Upload
-- 🔍 Smart Job Search & Filters
-- ❤️ Save/Bookmark Jobs
-- 📨 Apply for Jobs
-- 📊 Track Application Status
-- 💬 In-app Messaging
-- 🔔 Real-time Notifications
-
----
-
-## 🧑‍💼 HR / Recruiter Features
-- 📝 Post New Jobs
-- ✏️ Edit & Manage Jobs
-- 👀 Review Candidates
-- 📅 Schedule Interviews
-- 📨 Send Offer Letters
-- 🔎 Candidate Search
-- 💬 HR Messaging System
-
----
-
-## 🛡️ Admin Features
-- ✅ HR Approval Management
-- 👥 User Moderation
-- 📋 Job Moderation
-- 📊 Application Monitoring
-- ⚙️ Platform Management Dashboard
-
----
-
-# 🛠️ Tech Stack
-
-| Category | Technologies |
-|---|---|
-| 🎨 Frontend | React, Vite, Bootstrap, Axios, Lucide React |
-| ⚙️ Backend | Node.js, Express.js |
-| 🗄️ Database | MongoDB + Mongoose |
-| 🔐 Authentication | JWT |
-| ☁️ File Uploads | Multer + Cloudinary |
-| 🔔 Real-time | Socket.IO |
-| 🚀 Deployment | Vercel + Render |
-
----
-
-# 📂 Project Structure
-
-```bash
-HireNest/
-│
-├── Client/        # React + Vite Frontend
-│
-├── Server/        # Express + MongoDB Backend
-│
-└── README.md
+```text
+Client/   React + Vite + Bootstrap frontend
+Server/   Express + MongoDB REST API
 ```
 
----
+## Setup
 
-# ⚡ Installation & Setup
-
-## 1️⃣ Clone Repository
-
-```bash
-git clone https://github.com/your-username/hirenest-job-portal.git
-cd hirenest-job-portal
-```
-
----
-
-## 2️⃣ Install Frontend Dependencies
+Install frontend dependencies:
 
 ```bash
 cd Client
 npm install
 ```
 
----
-
-## 3️⃣ Install Backend Dependencies
+Install backend dependencies:
 
 ```bash
-cd ../Server
+cd Server
 npm install
 ```
 
----
+Environment files are included for local development. If you want to recreate them from examples:
 
-# 🔑 Environment Variables
+```bash
+copy Server\.env.example Server\.env
+copy Client\.env.example Client\.env
+```
 
-## 📌 Server `.env`
+Update `Server/.env`:
 
 ```env
 PORT=8000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 CLIENT_URL=http://localhost:6027
-
 ADMIN_EMAIL=your_admin_email
 ADMIN_PASSWORD=your_admin_password
-
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
----
-
-## 📌 Client `.env`
+Update `Client/.env`:
 
 ```env
 VITE_API_URL=http://localhost:8000/api
 ```
 
----
+Start MongoDB locally or use a MongoDB Atlas connection string.
 
-# 🌱 Database Seeding
-
-## 👨‍💼 Seed Admin Account
+Seed the admin account:
 
 ```bash
 npm run seed:admin --prefix Server
 ```
 
-## 💼 Seed Sample Jobs
+Seed sample jobs:
 
 ```bash
 npm run seed:jobs --prefix Server
 ```
 
----
+Admin login:
 
-# 🔐 Admin Login
-
-```bash
-Email: your_admin_email
-Password: your_admin_password
+```text
+your_admin_email
+your_admin_password
 ```
 
----
-
-# ▶️ Run Application
-
-## 🚀 Start Backend
+Run the backend:
 
 ```bash
 npm run dev --prefix Server
 ```
 
-## 💻 Start Frontend
+Run the frontend:
 
 ```bash
 npm run dev --prefix Client
 ```
 
----
+Frontend: `http://localhost:6027`  
+Backend: `http://localhost:8000/api`  
+Health check: `http://localhost:8000/api/health`
 
-# 🌍 Local URLs
+## Core Features
 
-| Service | URL |
-|---|---|
-| 💻 Frontend | http://localhost:6027 |
-| ⚡ Backend API | http://localhost:8000/api |
-| ❤️ Health Check | http://localhost:8000/api/health |
+User registration and JWT login  
+Role-based dashboards for students, HR, and admins  
+Responsive mobile-friendly UI  
+Student profile and resume upload  
+Job search with filters  
+Job saving/bookmarking  
+Student job applications  
+Application status tracking  
+HR job posting and job management  
+Candidate search and review  
+Interview scheduling  
+Offer letter generation and sending  
+In-app messaging  
+Real-time notifications with Socket.IO  
+Admin HR approval management  
+Admin user, job, and application moderation
 
----
+## Deployment Notes
 
-# ☁️ Deployment
+Frontend is configured for Vercel SPA routing with `vercel.json`.
 
-## 🚀 Frontend Deployment (Vercel)
-
-Configured with:
-- ✅ SPA Routing
-- ✅ `vercel.json`
-- ✅ Production Build Optimization
-
----
-
-## ⚡ Backend Deployment (Render)
-
-### Required Environment Variables
+Backend is designed for Render. Required Render environment variables:
 
 ```env
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 CLIENT_URL=https://your-vercel-domain.vercel.app
-
 ADMIN_EMAIL=your_admin_email
 ADMIN_PASSWORD=your_admin_password
-
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
----
-
-# 🔥 Current Included Features
-
-✅ Authentication System  
-✅ Role-based Access  
-✅ Resume Upload  
-✅ Job Applications  
-✅ Real-time Notifications  
-✅ Interview Scheduling  
-✅ Offer Letter System  
-✅ Admin Moderation  
-✅ Responsive UI  
-
----
-
-# 🚀 Additional / Future Features
-
-- 🔔 **Real-Time Notifications**: WebSockets for instant updates.
-- 💬 **Messaging System**: In-app messaging between employers and students.
-- 🤖 **Resume Parsing & Matching**: AI-based recommendations for job seekers.
-- 🔖 **Job Bookmarking**: Students can save jobs for later applications.
-- 📊 **Reports & Analytics**: Dashboard insights on job applications, user engagement, and hiring trends.
-
----
-
-# 📱 Responsive Design
-
-HireNest is fully optimized for:
-
-- 💻 Desktop
-- 📱 Mobile
-- 📲 Tablets
-
----
-
-# 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-```bash
-Fork 🍴 → Clone 📥 → Commit ✅ → Push 🚀 → Pull Request 🔥
-```
-
----
-
-# ⭐ Support
-
-If you like this project:
-
-🌟 Star the repository  
-🍴 Fork the project  
-📢 Share with others  
-
+The backend creates or updates the admin user on startup when `ADMIN_EMAIL` and `ADMIN_PASSWORD` are available.
